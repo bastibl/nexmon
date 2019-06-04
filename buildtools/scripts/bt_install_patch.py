@@ -2,7 +2,7 @@
 
 from pwn import *
 from internalblue.adbcore import ADBCore
-from internalblue.bluezcore import BluezCore
+from internalblue.hcicore import HCICore
 
 """
 This script needs to be appended by binary patches for Broadcom Bluetooth chips generated width Nexmon.
@@ -13,7 +13,7 @@ internalblue = ADBCore()
 try:
     internalblue.interface = internalblue.device_list()[0][1]  # just use the first Android device
 except IndexError:
-    internalblue = BluezCore()
+    internalblue = HCICore()
     try:
         internalblue.interface = internalblue.device_list()[0][1]  # ...or the first local HCI interface
     except IndexError:
